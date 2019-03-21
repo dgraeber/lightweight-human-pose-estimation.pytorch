@@ -6,6 +6,7 @@ import torch
 import flask
 import json
 import time
+from io import BytesIO
 import skimage
 
 from models.with_mobilenet import PoseEstimationWithMobileNet
@@ -85,10 +86,10 @@ def ping():
 @app.route('/invocations', methods=['POST'])
 def transformation():
 
-    #img_stringIO = BytesIO(flask.request.data)
-    #image = skimage.io.imread(img_stringIO)
+    img_stringIO = BytesIO(flask.request.data)
+    image = skimage.io.imread(img_stringIO)
 
-    image = skimage.io.imread('./bdawk.jpg')
+    #image = skimage.io.imread('./bdawk.jpg')
 
     # Do the prediction
 
