@@ -1,0 +1,24 @@
+
+docker build -t pose-cpu:latest .
+
+docker run -it \
+-v /Users/dgraeber/clients/cerner/ref_repos/lightweight-human-pose-estimation.pytorch:/opt/program/lightweight-human-pose-estimation.pytorch \
+pose-cpu:latest
+
+
+docker run -it \
+-v /home/ubuntu/repos:/opt/program/repos \
+pose-cpu:latest
+
+
+
+docker run -it -p 8888:8888 \
+-v /Users/dgraeber/clients/cerner/ref_repos/:/opt/program/repos \
+pose-cpu:latest \
+jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --notebook-dir=/ --NotebookApp.iopub_data_rate_limit=10000000
+
+
+python demo.py --checkpoint-path checkpoint_iter_370000.pth.tar --image bdawk.jpg --cpu
+
+
+
